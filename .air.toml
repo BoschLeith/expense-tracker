@@ -1,0 +1,18 @@
+# .air.toml
+
+# Root directory of the project
+root = "."
+
+# Build settings
+[build]
+  # Command to build the application
+  cmd = "go build -o ./tmp/main ./cmd"
+  
+  # Watch for changes in these directories
+  include_ext = ["go", "tpl", "tmpl", "html", "css", "js"]
+  exclude_dir = ["assets", "vendor"]
+
+# Log settings
+[log]
+  # Log level (info, debug, warn, error)
+  level = "info"
