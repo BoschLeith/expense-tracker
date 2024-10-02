@@ -1,14 +1,17 @@
-# Use the official Golang image with version 1.23.0 based on Alpine Linux for a lightweight container
+# Use the official Go image based on Alpine for a lightweight container
 FROM golang:1.23.0-alpine
 
-# Set the Current Working Directory inside the container to /app
+# Install build dependencies for CGO
+RUN apk add --no-cache gcc musl-dev sqlite-dev
+
+# Set the working directory inside the container
 WORKDIR /app
 
-# Install the latest version of the air package from GitHub
+# Install the latest version of the air package
 RUN go install github.com/air-verse/air@latest
 
-# Copy the contents of the current directory on the host to the working directory in the container
-COPY . .
+# Copy the go.mod and go.sum files to the working directory
+COPY go.mod go.sum ./
 
-# Clean up and ensure that the go.mod file is up to date with the dependencies
-RUN go mod tidy
+# Download the module dependencies specified in go.mod and go.sum
+RUN go mod download
