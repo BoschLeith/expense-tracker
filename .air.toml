@@ -6,7 +6,7 @@ root = "."
 # Build settings
 [build]
   # Command to build the application
-  cmd = "go build -o ./tmp/main ./cmd/api"
+  cmd = "go build -o ./tmp/main ./cmd/web"
   
   # Watch for changes in these directories
   include_ext = ["go", "tpl", "tmpl", "html", "css", "js"]
